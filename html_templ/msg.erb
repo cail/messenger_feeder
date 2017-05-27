@@ -1,0 +1,35 @@
+<div id="post<%=r["TimeStamp"]%>" class="post MT_<%=_MessageType.to_s(16)%> Likes_<%=r["PGLikeCount"]%>">
+
+<% if (_MessageType & MT_TEXT_MASK) == MT_TEXT_MASK %>
+    <div class="time"><%=time%></div>
+	<div class="cname" class="client<%=r["ContactID"]%>">
+	  <%=r["ClientName"]%>
+	</div>
+	<div class="cnumber">
+	  <%=r["Number"]%>
+	</div>
+<% end %>
+
+<% if  _MessageType == MT_IMG %>
+    <div class="subj"><%=r["Subject"]%></div>
+	<a href="<%=r["PayloadPath"]%>" class="showcase" data-rel="lightcase:def"><img src="<%=r["ThumbnailPath"]%>"></img></a>
+<% elsif  _MessageType == MT_STICKER %>
+    <div class="subj"><%=r["Subject"]%></div>
+    <div class="sticker ST_<%=r["StickerID"]%>"></div>
+<% elsif  _MessageType == MT_VID %>
+    <div class="subj"><%=r["Subject"]%></div>
+	<a href="<%=r["PayloadPath"]%>" class="showcase" data-rel="lightcase:def"><img src="<%=r["ThumbnailPath"]%>"></img></a>
+<% elsif _MessageType == MT_TEXT_JOINED %>
+	<div class="join">Добавлен</div>
+<% elsif _MessageType == MT_TEXT_REMOVE %>
+	<div class="remove">Удален</div>
+<% elsif _MessageType == MT_TEXT_MEJOINED %>
+	<div class="join">Добавлен</div>
+<% elsif (_MessageType & MT_TEXT_MASK) == MT_TEXT_MASK %>
+    <div class="subj"><%=r["Subject"]%></div>
+    <div class="body"><%=r["Body"]%></div>
+<% end %>
+<div class="inspect">
+<%#= r.inspect %>
+</div>
+</div>
