@@ -2,20 +2,25 @@ class GenFile
 
 	def initialize(dir)
 		@dir = dir || "files"
+		@verbose = false
 		begin
 			FileUtils.mkdir @dir
 		rescue
 		end
 	end
 
+	def verbose=(v)
+		@verbose = v
+	end
+
 	def get_file(f)
 		fname = Pathname.new(f).basename.to_s		
 		tgt = @dir + "/" + fname
 		if File.exist? tgt
-			puts "     SKIPPIN #{tgt}"
+			puts "     SKIPPIN #{tgt}" if @verbose
 			return tgt
 		end
-		puts "COPY #{f} #{tgt}"
+		puts "COPY #{f} #{tgt}" if @verbose
 		begin
 			FileUtils.cp f, tgt
 		rescue

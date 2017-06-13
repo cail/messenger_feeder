@@ -1,0 +1,14 @@
+
+# Simple Viber DB fetcher
+
+Use it:
+
+    ruby main.rb -c 85:chatone -c 87:chattwo
+
+List available chats:
+
+    ruby main.rb
+
+# License
+
+    GPL
